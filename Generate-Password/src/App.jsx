@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-
+import CheckBox from "./Checkbox";
+import Range from "./Range";
+import Input from "./Input";
 function App() {
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(10);
@@ -35,67 +37,50 @@ function App() {
   return (
     <div>
       <div className="header">
-        <input type="text" disabled value={password} />
+        <Input
+          id="password"
+          label="Password is"
+          value={password}
+          handler={null}
+          disabled={true}
+        />
       </div>
       <div className="controls">
-        <input
-          type="range"
-          name="length"
-          id=""
+        <Range
+          id="range"
           min={min}
-          value={length}
-          onChange={(e) => setLength(e.target.value)}
           max={max}
+          value={length}
+          handler={setLength}
         />
-        <b>Length is {length}</b>
         <div>
-          <label htmlFor="alphabets">Allow Alphabets</label>
-          <input
-            type="checkbox"
-            name="alphabets"
+          <CheckBox
             id="alphabets"
             checked={allowAlphabets}
-            onChange={() => {
-              setallowAlphabets(!allowAlphabets);
-            }}
+            onChangeHandler={setallowAlphabets}
           />
         </div>
 
         <div>
-          <label htmlFor="alphabets">Allow Uppercase</label>
-          <input
-            type="checkbox"
-            name="uppercase"
-            id="uppercase"
-            checked={allowUppercase}
-            onChange={() => {
-              setallowUppercase(!allowUppercase);
-            }}
-          />
-        </div>
-        <div>
-          <label htmlFor="numeric">Allow Numeric</label>
-          <input
-            type="checkbox"
-            name="numeric"
+          <CheckBox
             id="numeric"
             checked={allowNumeric}
-            onChange={() => {
-              setallowNumeric(!allowNumeric);
-            }}
+            onChangeHandler={setallowNumeric}
+          />
+        </div>
+        <div>
+          <CheckBox
+            id="uppercase"
+            checked={allowUppercase}
+            onChangeHandler={setallowUppercase}
           />
         </div>
 
         <div>
-          <label htmlFor="symbols">Allow Symbols</label>
-          <input
-            type="checkbox"
-            name="symbols"
+          <CheckBox
             id="symbols"
             checked={allowSymbols}
-            onChange={() => {
-              setallowSymbols(!allowSymbols);
-            }}
+            onChangeHandler={setallowSymbols}
           />
         </div>
       </div>
